@@ -1,0 +1,88 @@
+.container-input{
+	display: flex;
+    width: 600px;
+    margin-top: 5px;
+}
+
+.input-text{
+	margin-left: 50px;
+	border: none;
+	height: 35px;
+}
+
+.container-title{
+	display: flex;
+	margin-top: 30px;
+}
+
+.title-form{
+	margin-left: 150px;
+	width: 100px;
+}
+
+.title-destiny{
+	margin-left: 200px;
+}
+
+.title-origen{
+	margin-left: 50px;
+}
+
+.date-form{
+	margin-top: 30px;
+}
+
+.title-fly-date p{
+	width: 180px;
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.container-form{
+	width: 600px;
+    height: 350px;
+    padding: 20px;
+    background-color: #84A8FB;
+    margin-right: 150px;
+    float: right;
+}
+
+.container-input-date{
+	display: flex;
+}
+
+.input-date{
+	margin-left: 50px;
+	width: 200px;
+	border: none;
+	height: 35px;
+
+}
+
+.title-form-date{
+	display: flex;
+}
+
+.title-form-date{
+	margin-left: 25px;
+    width: 100px;
+}
+
+.return{
+	margin-left: 200px;
+}
+
+.search-btn{
+	margin-top: 40px;
+	background-color: #0050D0;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    color: white;
+}
+
+.container-check{
+	margin-left: -150px
+}
+
+

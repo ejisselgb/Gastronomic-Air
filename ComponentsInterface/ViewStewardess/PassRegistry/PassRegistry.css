@@ -1,0 +1,24 @@
+.button-registry{
+	margin-top: 30px;
+    background-color: #0050D0;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    color: white;
+    margin-left: 35%;
+}
+
+.title-pass{
+	display: flex;
+	margin-left: -150px;
+}
+
+.div-pass{
+	display: flex;
+	float: right;
+	margin-right: -50px;
+}
+
+.div-pass input{
+	margin-left: 20px
+}
