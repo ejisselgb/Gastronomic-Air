@@ -13,6 +13,7 @@ import ViewCheck from './ComponentsInterface/ViewCheck/ViewCheck';
 import Purchase from './ComponentsInterface/ViewPassenger/Purchase/Purchase';
 import ConfirmPurchase from './ComponentsInterface/ViewPassenger/ConfirmPurchase/ConfirmPurchase';
 import ConfirmCheck from './ComponentsInterface/ViewCheck/ConfirmCheck/ConfirmCheck';
+import SeeFood from './ComponentsInterface/ViewStewardess/SeeFood/SeeFood';
 
 class App extends Component {
   render() {
@@ -41,6 +42,9 @@ class App extends Component {
                   }></Route>
               <Route path="/ConfirmCheck" render={
                     ({history}) => <ConfirmCheck history={history}/>
+                  }></Route>
+              <Route path="/SeeFood" render={
+                    ({history}) => <SeeFood history={history}/>
                   }></Route>
           </Switch>
         </BrowserRouter>

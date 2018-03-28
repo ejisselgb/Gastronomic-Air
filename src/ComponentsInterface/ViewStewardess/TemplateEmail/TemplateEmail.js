@@ -1,10 +1,17 @@
-import { Email, Item, Span, A, renderEmail } from 'react-html-email'
+import { Email, Item, Span, A, renderEmail } from 'react-html-email';
+import React, { Component } from 'react';
 
+/**
 
+ * @version			1.0
 
-class TemplateEmail extends Component {
+ * @author			Erika Gutierrez, Manuel Vasquez
 
-	const emailHTML = renderEmail(
+ * @description 	Template for email 
+
+*/
+
+const emailHTML = renderEmail(
 	  <Email title="Hello World!">
 	    <Item align="center">
 	      <Span fontSize={20}>
@@ -14,6 +21,16 @@ class TemplateEmail extends Component {
 	    </Item>
 	  </Email>
 	)
+
+class TemplateEmail extends Component {
+	
+	render(){
+		return(
+			<div>
+			 {emailHTML}
+			</div>
+		)
+	}
 }
  
 

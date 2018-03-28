@@ -1,20 +1,39 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 
 import './ViewStewardess.css';
+import ViewModal from './SeeFood/ViewModal/ViewModal'
+import PassRegistry from './PassRegistry/PassRegistry'
 
+Modal.setAppElement('body')
+
+/**
+
+ * @version			1.0
+
+ * @author			Erika Gutierrez, Manuel Vasquez
+
+ * @description 	Contain the avalaible options for the uer of type stewardess
+
+*/
 
 class ViewStewardess extends Component {
+
+	/** @constructor */
 
 	constructor(props, context) {
 
 		super(props);
-		this.state = {};
+		this.state = {
+					disabledFood: false,  
+					disabledRegistry: false
+				};
+
 		this.getValueButtons = this.getValueButtons.bind(this);
 	}
 
-
-
 	render(){
+
 		return(
 			<div>
 				<div className="container-fluid">
@@ -41,16 +60,35 @@ class ViewStewardess extends Component {
     						</div>
 						</div>
 					</form>
+					<div>
+						{ this.state.disabledFood ? <ViewModal disabled={this.state.disabledFood} history={this.props.history}/> : null }
+					</div>
+					<div>
+						{ this.state.disabledRegistry ? <PassRegistry disabled={this.state.disabledRegistry}/> : null }
+					</div>
 				</div>
 			</div>
 		)
 	}
 
+	/**
+
+	 * Pass between components and send email depending on value id of button
+
+	 * @param  {e} capture the value of button object
+
+	*/
 
 	getValueButtons(e){
 
-		console.log(e.target.id);
+		if(e.target.id === "seeFood"){
+			this.setState( {disabledFood: true, disabledRegistry: false} )
+		}
 
+		else if(e.target.id === "registry"){
+			this.setState( {disabledRegistry: true, disabledFood: false} )
+			
+		}
 	}
 
 }

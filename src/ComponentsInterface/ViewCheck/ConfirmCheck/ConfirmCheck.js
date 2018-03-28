@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 
 import './ConfirmCheck.css';
 
+/**
+
+ * @version			1.0
+
+ * @author			Erika Gutierrez, Manuel Vasquez
+
+ * @description 	Component for confirm and validate the fligth 
+
+*/
+
 class ConfirmCheck extends Component {
+
+	/** @constructor */
 
 	constructor(props, context) {
 
@@ -16,6 +28,8 @@ class ConfirmCheck extends Component {
 
 	}
 
+	/** @description	Component that render the elements after to load the page */
+
 	componentDidMount(){
 
 		this.setState({
@@ -28,6 +42,13 @@ class ConfirmCheck extends Component {
 		})
 	}
 
+	/**
+
+	 * Generate the options depending on chairs number of the airplane
+
+	 * @return 		Array of chair items
+
+	*/
 
 	optionsChairFly(){
 
@@ -39,8 +60,17 @@ class ConfirmCheck extends Component {
 				 itemsChair.push(<option key={i} value={i}>{this.state.chairFly[i]}</option>);  
 			};
 		}
+
 		return itemsChair;
 	}
+
+	/**
+
+	 * Generate the options depending on avalaible menu in the airplane
+
+	 * @return 		Array of menu items
+
+	*/
 
 	optionsMenu(){
 
@@ -53,7 +83,6 @@ class ConfirmCheck extends Component {
 			};
 		}
 		return itemsMenu;
-
 	}
 
 
@@ -103,6 +132,15 @@ class ConfirmCheck extends Component {
 		)
 	}
 
+
+	/**
+
+	 * This method get value of inputs and selects
+
+	 * @param  {e} capture the value of input and options object
+
+	*/
+
 	handleChange(e) {
 
 		this.setState({value: e.target.value});
@@ -121,6 +159,15 @@ class ConfirmCheck extends Component {
     		this.setState({valueDisableMenu: true})
     	}
   	}
+
+
+  	/**
+
+	 * Validate and insert the information of user in the database for do the check
+
+	 * @param  {e} capture the value of input and options object
+
+	*/
 
   	confirmCheck(e){
 

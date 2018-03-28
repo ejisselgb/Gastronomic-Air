@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './ViewPassenger.css';
 
+/**
+
+ * @version			1.0
+
+ * @author			Erika Gutierrez, Manuel Vasquez
+
+ * @description 	Show the avalaible options for the passenger
+
+*/
+
 class ViewPassenger extends Component {
+
+	/** @constructor */
 
 	constructor(props, context) {
 
@@ -10,7 +23,9 @@ class ViewPassenger extends Component {
 		this.state = {};
 
 		this.getValueOnClick = this.getValueOnClick.bind(this);
+		this.onValueChanged = this.onValueChanged.bind(this);
 
+		
 	}
 
 	render(){
@@ -25,8 +40,8 @@ class ViewPassenger extends Component {
 								<div className="title-destiny">Destino</div>
 							</div>
 							<div className="container-input">
-								<input className="input-text" name="origen" type="text" placeholder="ej: Cali"/>
-		              			<input className="input-text" name="destino" type="text" placeholder="ej: Bogota"/>
+								<input className="input-text" name="origin" type="text" placeholder="ej: Cali" onChange={this.onValueChanged} />
+		              			<input className="input-text" name="destiny" type="text" placeholder="ej: Bogota" onChange={this.onValueChanged} />
 							</div>
 							<div className="date-form">
 								<div className="title-fly-date"><p>Fechas de Viaje</p></div>
@@ -35,11 +50,11 @@ class ViewPassenger extends Component {
 			              			<div className="title-form-date return">Regreso</div>
 								</div>
 			              		<div className="container-input-date">
-			              			<input className="input-date" type="date" name="date" min="2018-03-25"
-	                                  max="2018-05-25" />
+			              			<input className="input-date" type="date" name="goDate" min="2018-03-27"
+	                                  max="2018-12-31" onChange={this.onValueChanged} />
 	                           	
-				              		<input className="input-date" type="date" name="date" min="2018-03-25"
-		                                  max="2018-05-25" />
+				              		<input className="input-date" type="date" name="returnDate" min="2018-03-27"
+		                                  max="2018-12-31" onChange={this.onValueChanged} />
 			              		</div>
 							</div>
 							<button className="search-btn" id="search" onClick={this.getValueOnClick.bind(this)}>Buscar vuelos</button>
@@ -54,12 +69,74 @@ class ViewPassenger extends Component {
 		);
 	}
 
+	/**
+
+	 * Validate the type of the button for pass of view depending on the option selected
+
+	 * @param  {e} capture the value of button object
+
+	*/
+
+	onValueChanged(e) {
+
+			if(e.target.name === "origin"){
+			this.setState({
+				valueOrigin: e.target.value
+			})
+			}else if(e.target.name === "destiny"){
+				this.setState({
+					valueDestiny: e.target.value
+				})
+			}
+			else if(e.target.name === "goDate"){
+				this.setState({
+					valueGoDate: e.target.value
+				})
+			}
+			else if(e.target.name === "returnDate"){
+				this.setState({
+					valuereturnDate: e.target.value
+				})
+			}
+	}
+
+	/**
+
+	 * Get value of inputs and get the data from endpoint for flights
+
+	 * @param  {e} capture the value of button object
+
+	 * @endpoint http://localhost:3000/search?opc=1&origin=:origin&destiny=:destiny
+
+	*/
+
 	getValueOnClick(e){
+		
+		var endPointFlights="http://localhost:3000/search?opc=1&origin="; 
+
 		if(e.target.id === "check"){
 			this.props.history.push("/ViewCheck");
 		}
+
 		else if(e.target.id === "search"){
-			this.props.history.push("/Purchase");
+
+			if(this.state.valueOrigin !== undefined && this.state.valueDestiny !== undefined && this.state.valueGoDate !== undefined && this.state.valuereturnDate !== undefined){
+				axios.get(endPointFlights+this.state.valueOrigin+"&destiny="+this.state.valueDestiny)
+				.then((response) => {
+					if(response.status === 200){
+						this.props.history.push({
+				          pathname: '/Purchase',
+				          state: {
+				            itemsFligth: response.data,
+				          }
+				        })
+					}
+				}).catch(function (err) {
+	        		console.log(err);
+	      		});	
+			}else{
+				alert("No puedes dejar ningún campo vacio, ingresa todos los datos para continuar la búsqueda")
+			}
 		}
 	}
 }

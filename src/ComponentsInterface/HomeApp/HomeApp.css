@@ -12,6 +12,11 @@
 	margin-top: 100px;
 }
 
+.container-btn-main{
+    width: 80%;
+    margin-left: 16%;
+}
+
 .title-buttons-home{
 	margin-top: 30px;
     font-size: 20px;
@@ -31,4 +36,10 @@
 .button-passenger{
 	float: left;
     cursor: pointer;
+}
+
+.img-logo{
+    width: 130px;
+    margin-top: 50px;
+    margin-bottom: -30px;
 }
