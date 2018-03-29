@@ -19,36 +19,12 @@ class Purchase extends Component {
 	constructor(props, context) {
 
 		super(props);
-		this.state = {
-			fly: {
-				name:"avianca",
-				time:"5:30",
-				timeReturn:"21:00",
-				prize:"180.000"
-			},
-
-			arrayFly: []
-
-		};
+		this.state = {};
 
 		this.goConfirmPurchase = this.goConfirmPurchase.bind(this);
 
 	}
 
-	/** @description	Component that render the elements after to load the page */
-
-	componentDidMount(){
-
-		var arrayFill = []
-
-		if(this.state.fly !== undefined){
-			arrayFill.push(this.state.fly);
-		}
-
-		this.setState({
-			arrayFly: arrayFill,
-		})
-	}
 
 	render(){
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './ConfirmCheck.css';
 
@@ -22,10 +23,9 @@ class ConfirmCheck extends Component {
 		this.state = {};
 
 		this.optionsChairFly = this.optionsChairFly.bind(this);
-		this.optionsMenu = this.optionsMenu.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.confirmCheck = this.confirmCheck.bind(this);
-
+		this.getValueTypeFood = this.getValueTypeFood.bind(this);
 	}
 
 	/** @description	Component that render the elements after to load the page */
@@ -35,11 +35,21 @@ class ConfirmCheck extends Component {
 		this.setState({
 			nameUser: "Erika Gutiérrez",
 			value: 'chair',
-			chairFly: [1,2,3,4,5],
+			chairFly: ["A1","A3","A4","A5","A6","B1","B2","B3","B4","B5","B6"],
 			menu: ["Paella", "Casuela Mariscos", "Vegetales al vapor"],
 			valueDisable: true,
 			valueDisableMenu: true,
 		})
+
+		axios.get("http://localhost:3000/check?opc=2")
+			.then((response) => {
+				this.setState({
+					food: response.data
+				})
+
+			}).catch(function (err) {
+	        	console.log(err);
+	    });	
 	}
 
 	/**
@@ -57,49 +67,52 @@ class ConfirmCheck extends Component {
 		if(this.state.chairFly !== undefined){
 			for (var i = 0; i < this.state.chairFly.length; i++) {
 
-				 itemsChair.push(<option key={i} value={i}>{this.state.chairFly[i]}</option>);  
+				 itemsChair.push(<option key={i} value={this.state.chairFly[i]}>{this.state.chairFly[i]}</option>);  
 			};
 		}
 
 		return itemsChair;
 	}
 
-	/**
-
-	 * Generate the options depending on avalaible menu in the airplane
-
-	 * @return 		Array of menu items
-
-	*/
-
-	optionsMenu(){
-
-		let itemsMenu = []; 
-
-		if(this.state.menu !== undefined){
-			for (var i = 0; i < this.state.menu.length; i++) {
-
-				 itemsMenu.push(<option key={i} value={i}>{this.state.menu[i]}</option>);  
-			};
-		}
-		return itemsMenu;
-	}
-
-
 	render(){
+
+
+		if(this.state.food !== undefined){
+			this.typeFood = this.state.food.map((image,index)=>{
+				return(
+					<option key={index} value={image[0]}>{image[1]}</option>
+				);
+			})
+		}
+
+
+		if(this.state.menuFood !== undefined){
+			this.menu = this.state.menuFood.map((image,index)=>{
+				return(
+					<option key={index} value={image[0]}>{image[2]}</option>
+				);
+			})
+		}
+		
+
+		if(this.props.history.location.state !== undefined){
+			this.nameUser = this.props.history.location.state.nameUser;
+		}else{
+			this.nameUser = "";
+		}
 
 		return(
 			<div className="container-fluid">
 				<h3 className="title-home-app">Confirma tu check-in y preparate para el viaje</h3>
 				<div className="col-sm-8">
 					<div className="container-form form-check">
-						<p>Bienvenido <b>{this.state.nameUser}</b>, confirma todos los detalles de tu vuelo</p>
+						<p>Bienvenido <b>{this.nameUser}</b>, confirma todos los detalles de tu vuelo</p>
 							<div className="container-title">
 								<div className="title-origen">Seleccionar Silla</div>
 								<div className="title-doc title-check-two">Confirmar Comida</div>
 							</div>
 							<div className="container-input">
-								<select className="input-text input-select input-select-check" defaultValue="" onChange={this.handleChange.bind(this)}>
+								<select className="input-text input-select input-select-check" defaultValue="" onChange={this.handleChange.bind(this)} name="chair">
 									<option value="" disabled>Por favor escoja una silla</option>
 									{this.optionsChairFly()}
 					    		</select>
@@ -115,14 +128,13 @@ class ConfirmCheck extends Component {
 							</div>
 
 			    			<div className="container-input">
-			    				<select className="input-text input-select input-select-check" defaultValue="" onChange={this.handleChange.bind(this)} disabled={this.state.valueDisable}>
-			    					<option value="" disabled>Escoge tu menu</option>
-					        		<option value="normal">Normal</option>
-					        		<option value="special">Especial</option>
+			    				<select className="input-text input-select input-select-check" defaultValue="" onChange={this.getValueTypeFood.bind(this)} disabled={this.state.valueDisable}>
+			    					{this.typeFood}
 					     		</select>
 
-					    		<select className="input-text input-select input-select-check" defaultValue="" onChange={this.handleChange.bind(this)} disabled={this.state.valueDisableMenu}>
-									{this.optionsMenu()}
+					    		<select className="input-text input-select input-select-check" defaultValue="" onChange={this.handleChange.bind(this)} disabled={this.state.valueDisableMenu} name="menu">
+					    			<option value="" disabled>Por favor seleccione un menu</option>
+									{this.menu}
 					    		</select>
 							</div>
 			    		<button className="search-btn" onClick={this.confirmCheck.bind(this)}>Confirmar Check-in</button>
@@ -130,6 +142,26 @@ class ConfirmCheck extends Component {
 				</div>
 			</div>
 		)
+	}
+
+	/**
+
+	 * Get code of type food for build the menu
+
+	*/
+
+	getValueTypeFood(e){
+
+		var valueType = e.target.value;
+
+		if(e.target.value !== undefined){
+			axios.get("http://localhost:3000/check?opc=3&typefood="+valueType)
+			.then((response) => {
+				this.setState({menuFood: response.data, valueDisableMenu: false})
+			}).catch(function (err) {
+	        	console.log(err);
+	    	});
+		}
 	}
 
 
@@ -143,20 +175,21 @@ class ConfirmCheck extends Component {
 
 	handleChange(e) {
 
-		this.setState({value: e.target.value});
 
     	if(e.target.value === "si"){
     		console.log("es igual a si");
     		this.setState({valueDisable: false})
 
     	}else if (e.target.value === "no"){
-    		this.setState({valueDisable: true})
+    		this.setState({valueDisable: true, valueDisableMenu: true, valueMenu: null})
     	}
 
-    	if(e.target.value === "special"){
-    		this.setState({valueDisableMenu: false})
-    	}else if (e.target.value === "normal"){
-    		this.setState({valueDisableMenu: true})
+    	if(e.target.name === "menu"){
+    		this.setState({valueMenu: e.target.value})
+    	}
+
+    	if(e.target.name === "chair"){
+    		this.setState({numberChair: e.target.value})
     	}
   	}
 
@@ -171,10 +204,22 @@ class ConfirmCheck extends Component {
 
   	confirmCheck(e){
 
-  		alert("checkRealizado");
+  		var identificationNumber = this.props.history.location.state.documentNumber;
+  		var flightReser = this.props.history.location.state.codeR;
+
+  		axios.get("http://localhost:3000/check?opc=4&typefood="+this.state.valueMenu+'&chair='+this.state.numberChair+'&code=002&identification='+identificationNumber+'&flight='+flightReser)
+			.then((response) => {
+				
+				if(response.status === 200){
+					alert("Usted ha realizado su check-in correctamente, recuerde presentarse en el aereopuerto 2 horas antes del viaje");
+					this.props.history.push({pathname: '/'});
+				}
+
+			}).catch(function (err) {
+	        	console.log(err);
+	    });
   	}
 
 }
-
 
 export default ConfirmCheck;

@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './ConfirmPurchase.css';
+import {consultUser} from './AxiosMethodsPurchase.js'
 
 /**
 
- * @version			1.0
+ * @version			2.0
 
  * @author			Erika Gutierrez, Manuel Vasquez
 
  * @description 	Component for allow the user inserted the data necessary for do check-in
+
+ * @modificate   	Eliminated dependecy of methods for do the queries in the database
 
 */
 
@@ -23,8 +26,6 @@ class ConfirmPurchase extends Component {
 
 	    this.handleChange = this.handleChange.bind(this);
 	    this.onClickPass = this.onClickPass.bind(this);
-	    this.sendEmail = this.sendEmail.bind(this);
-
   	}
 
 	render(){
@@ -73,9 +74,9 @@ class ConfirmPurchase extends Component {
 			        <button className="button-confirm-purchase" onClick={this.onClickPass.bind(this)}>Comprar y reservar</button>
 				</div>
 			</div>
-
 		)
 	}
+
 
 	/**
 
@@ -118,45 +119,17 @@ class ConfirmPurchase extends Component {
 
   	onClickPass(e){
 
-  		//console.log(this.props.history.location.state.valueFly);
-
   		var typeUser = 3;
+  		var valueFligth = this.props.history.location.state.valueFly;
 
   		if(this.state.valueName !== undefined && this.state.valueEmail !== undefined && this.state.valueDocument !== undefined && this.state.valueCard !== undefined){
-  			var endPointFlights="http://localhost:3000/search?opc=2&identification="; 
-  			axios.get(endPointFlights+this.state.valueDocument+"&type="+typeUser+"&name="+this.state.valueName+"&email="+this.state.valueEmail)
-				.then((response) => {
-					if(response.status === 200){
-						this.sendEmail(this.state.valueEmail);
-					}
-				}).catch(function (err) {
-	        		console.log(err);
-	      		});		
+
+  			/*Function called from class js AxiosMethodsPurchase*/
+  			consultUser(axios, this.state.valueDocument, typeUser, this.state.valueName, this.state.valueEmail, this.props.history, valueFligth);
+
   		}else{
   			alert("Complete todos los campos para continuar con la compra de su tiquete");
-  		}
-  		
-  	}
-
-  	/**
-
-	 * Send the email when the purchase of user is confirm
-
-	 * @param  {email}  Receive the email enter from form to purchase ticket
-
-	*/
-
-  	sendEmail(email){
-  		axios.get("http://localhost:3000/send/"+email+"/Template2")
-		.then((response) => {
-			if(response.status === 200){
-				alert("Ud ha comprado correctamente su ticket, se ha enviado a su correo la información de su vuelo");
-				this.props.history.push({pathname: '/'});
-				window.location.reload();
-			}
-		}).catch(function (err) {
-	        console.log(err);
-	    });	
+  		}	
   	}
 }
 
