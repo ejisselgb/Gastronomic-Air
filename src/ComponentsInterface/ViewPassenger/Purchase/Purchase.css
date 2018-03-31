@@ -3,10 +3,11 @@
 }
 
 .table-fly #title-table{
-	border: 1px solid #dddddd;
+	border: 1px solid #84A8FB;
     text-align: center;
     padding: 8px;
-    background-color: #dddddd;
+    background-color: #84A8FB;
+    font-weight: 600;
 }
 
 .container-table-fly{

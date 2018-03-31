@@ -9,12 +9,12 @@
 
 .container-buttons-home{
 
-	margin-top: 100px;
+	margin-top: 50px;
 }
 
 .container-btn-main{
     width: 80%;
-    margin-left: 16%;
+    margin-left: 10%;
 }
 
 .title-buttons-home{
@@ -24,9 +24,7 @@
     font-weight: 600;
 }
 
-.title-home-app{
-	margin-top: 50px;
-}
+
 
 .button-stewardess{
 	float: right;
@@ -40,6 +38,21 @@
 
 .img-logo{
     width: 130px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+body{
+    background-image: url(../../Resources/fondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cointaner-home{
+    width: 50%;
+    margin-left: 25%;
+    background-color: rgba(255,255,255,0.8);
+    height: 500px;
     margin-top: 50px;
-    margin-bottom: -30px;
+    border-radius: 10px;
 }

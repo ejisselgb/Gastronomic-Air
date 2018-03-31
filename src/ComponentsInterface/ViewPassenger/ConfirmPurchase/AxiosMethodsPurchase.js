@@ -57,12 +57,10 @@ function insertReservation(axios, valueDocument, valueFligth, valueEmail, histor
 	var valueStatus = '001';
 	var email = valueEmail;
 
-	console.log(email);
-
 	axios.get("http://localhost:3000/search?opc=4&identification="+valueDocument+"&fligthCode="+valueFligth+"&status="+valueStatus)
 	.then((response) => {
 		if(response.status === 200){
-			sendEmail(axios, email, history);
+			sendEmail(axios, email, history, valueFligth);
 		}
 	}).catch(function (err) {
 		alert("Verfique sus datos, no es posible continuar");
@@ -74,15 +72,15 @@ function insertReservation(axios, valueDocument, valueFligth, valueEmail, histor
 /**
 	* Send the email when the purchase of user is confirm
 
-	* @param  {axios, valueemail, history}  Receive the email enter from form to purchase ticket
+	* @param  {axios, valueemail, history, valueFligth}  Receive the email enter from form to purchase ticket
 */
 
-function sendEmail(axios, email, history){
+function sendEmail(axios, email, history, valueFligth){
 
 	axios.get("http://localhost:3000/send/"+email+"/Template2/Gracias por comprar en Gastronomic Air")
 		.then((response) => {
 			if(response.status === 200){
-				alert("Ud ha comprado correctamente su ticket, se ha enviado a su correo la información de su vuelo");
+				alert("Ud ha comprado correctamente su ticket, vuelo número: "+valueFligth+ " Se ha enviado a su correo la información del vuelo");
 				history.push({pathname: '/'});
 				window.location.reload();
 			}

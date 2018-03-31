@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import axios from 'axios';
 
 import './PassRegistry.css';
 
@@ -20,9 +21,11 @@ class PassRegistry extends Component {
 	constructor(props, context) {
 
 		super(props);
-		this.state = {showModalClick: ""};
+		this.state = {showModalClick: "", disabledButton: false};
    		this.handleCloseModal = this.handleCloseModal.bind(this);
    		this.registryPass = this.registryPass.bind(this);
+   		this.onValueChanged = this.onValueChanged.bind(this);
+   		this.refreshView = this.refreshView.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps){
@@ -54,19 +57,22 @@ class PassRegistry extends Component {
 			        <button className="btn-close" onClick={this.handleCloseModal}>cerrar</button>
 			        <center><p>Ingresa los datos del pasajero para continuar</p></center>
 			        <div className="container-modal">
-			        	<div className="title-container-modal title-pass">
-			        		<p>Nombre Pasajero</p>
 			        		<p>Nro Reserva</p>
-			        	</div>
-			        	<div className="div-pass">
-			        		<input></input>
-			        		<input></input>
-			        	</div>
+			        		<input name="numberReservation" onChange={this.onValueChanged}></input>
 			        </div>
-			        <button className="button-registry" onClick={this.registryPass}>Registrar Pasajero</button>
+			        <button className="button-registry" onClick={this.registryPass} disabled={this.state.disabledButton}>Registrar Pasajero</button>
 			   	</Modal>
 			</div>
 		)
+	}
+
+	onValueChanged(e) {
+		
+		if(e.target.name === "numberReservation"){
+			this.setState({
+				valueReservation: e.target.value
+			})
+		}
 	}
 
 	/**
@@ -79,7 +85,34 @@ class PassRegistry extends Component {
 
 	registryPass(){
 
-		alert("Pasajero registrado exitosamente")
+		if(this.state.valueReservation !== undefined){
+			axios.get("http://localhost:3000/reservation?opc=2&numberres="+this.state.valueReservation)
+			.then((response) => {
+				this.setState({disabledButton: true})
+				if(response.status === 200){
+					alert("Usuario confirmado correctamente");
+					if(this.props.numberfligth !== undefined){
+						this.refreshView(this.props.numberfligth);
+					}	
+				}
+
+				}).catch(function (err) {
+	        	alert("Número de reserva incorrecto");
+	    	});
+		}else{
+			alert("Debe el código de reserva del usuario");
+		}
+	}
+
+	refreshView(valueProps){
+
+		axios.get("http://localhost:3000/reservation?opc=1&numberfligth="+valueProps)
+			.then((response) => {
+				this.props.receiveValueRefresh(response.data);
+				}).catch(function (err) {
+	        	console.log(err);
+	    	});
+
 	}
 
 }

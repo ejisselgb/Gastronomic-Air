@@ -22,7 +22,7 @@ class ConfirmPurchase extends Component {
 
 	constructor(props) {
 	    super(props);
-	    this.state = {};
+	    this.state = {disabledButton: false};
 
 	    this.handleChange = this.handleChange.bind(this);
 	    this.onClickPass = this.onClickPass.bind(this);
@@ -32,9 +32,10 @@ class ConfirmPurchase extends Component {
 
 		return(
 			<div className="container-fluid">
+				<div className="container-pass view-check">
 				<h3 className="title-home-app">Realizar reserva y comprar vuelo</h3>
 				<center><p>Ingresa tus datos para continuar</p></center>
-				<div className="col-sm-8 container-form form-purchase">
+				<div className="col-sm-12 container-form form-purchase">
 					<div className="container-title">
 						<div className="title-origen">Nombre Pasajero</div>
 						<div className="title-two">Correo Electrónico</div>
@@ -71,7 +72,8 @@ class ConfirmPurchase extends Component {
 			        
 						<input className="input-text" name="numberT" type="text" onChange={this.handleChange}/>
 					</div>
-			        <button className="button-confirm-purchase" onClick={this.onClickPass.bind(this)}>Comprar y reservar</button>
+			        <button className="button-confirm-purchase" onClick={this.onClickPass.bind(this)} disabled={this.state.disabledButton}>Comprar y reservar</button>
+				</div>
 				</div>
 			</div>
 		)
@@ -126,6 +128,7 @@ class ConfirmPurchase extends Component {
 
   			/*Function called from class js AxiosMethodsPurchase*/
   			consultUser(axios, this.state.valueDocument, typeUser, this.state.valueName, this.state.valueEmail, this.props.history, valueFligth);
+  			this.setState({disabledButton: true})
 
   		}else{
   			alert("Complete todos los campos para continuar con la compra de su tiquete");

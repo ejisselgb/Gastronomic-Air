@@ -1,0 +1,15 @@
+.registry{
+	background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.see-food{
+	overflow-y: scroll;
+    height: 600px;
+}
+
+#title-table td{
+	width: 300px;
+}

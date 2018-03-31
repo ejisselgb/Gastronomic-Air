@@ -39,3 +39,7 @@
 	left: 28% !important; 
     height: 350px !important;
 }
+
+.ReactModal__Overlay{
+    background-color: rgba(0, 0, 0, 0.75) !important;
+}   

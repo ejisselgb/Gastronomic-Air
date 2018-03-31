@@ -31,7 +31,6 @@ class Purchase extends Component {
 
 		if(this.props.history.location.state.itemsFligth !== undefined){
 			this.fly = this.props.history.location.state.itemsFligth.map((image,index)=>{
-
 				return(
 					<div key={index} className="col-ms-6 container-table-fly">
 					<table className="table-fly">
@@ -61,11 +60,12 @@ class Purchase extends Component {
 
 		return(
 			<div className="container-fluid">
-				<h3 className="title-purchase">Reservar y comprar tus vuelos al mejor precio</h3>
-				<div className="col-ms-10">
-					{this.fly}
+				<div className="container-pass">
+					<h3 className="title-purchase">Reservar y comprar tus vuelos al mejor precio</h3>
+					<div className="col-ms-10">
+						{this.fly}
+					</div>
 				</div>
-
 			</div>
 		)
 	}

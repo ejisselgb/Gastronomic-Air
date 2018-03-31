@@ -20,7 +20,7 @@ class ConfirmCheck extends Component {
 	constructor(props, context) {
 
 		super(props);
-		this.state = {};
+		this.state = {disabledButton: false};
 
 		this.optionsChairFly = this.optionsChairFly.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -33,10 +33,7 @@ class ConfirmCheck extends Component {
 	componentDidMount(){
 
 		this.setState({
-			nameUser: "Erika Gutiérrez",
-			value: 'chair',
-			chairFly: ["A1","A3","A4","A5","A6","B1","B2","B3","B4","B5","B6"],
-			menu: ["Paella", "Casuela Mariscos", "Vegetales al vapor"],
+			chairFly: ["A1","A3","A4","A5","A6","B1","B2","B3","B4","B5","B6","C1","C2","C3","C4","C4","C5","C6"],
 			valueDisable: true,
 			valueDisableMenu: true,
 		})
@@ -76,7 +73,6 @@ class ConfirmCheck extends Component {
 
 	render(){
 
-
 		if(this.state.food !== undefined){
 			this.typeFood = this.state.food.map((image,index)=>{
 				return(
@@ -89,7 +85,7 @@ class ConfirmCheck extends Component {
 		if(this.state.menuFood !== undefined){
 			this.menu = this.state.menuFood.map((image,index)=>{
 				return(
-					<option key={index} value={image[0]}>{image[2]}</option>
+					<option key={index} value={image[2]}>{image[3]}</option>
 				);
 			})
 		}
@@ -103,6 +99,7 @@ class ConfirmCheck extends Component {
 
 		return(
 			<div className="container-fluid">
+				<div className="container-pass view-check">
 				<h3 className="title-home-app">Confirma tu check-in y preparate para el viaje</h3>
 				<div className="col-sm-8">
 					<div className="container-form form-check">
@@ -129,6 +126,7 @@ class ConfirmCheck extends Component {
 
 			    			<div className="container-input">
 			    				<select className="input-text input-select input-select-check" defaultValue="" onChange={this.getValueTypeFood.bind(this)} disabled={this.state.valueDisable}>
+			    					<option value="" disabled>Por favor seleccione tipo de comida</option>
 			    					{this.typeFood}
 					     		</select>
 
@@ -137,8 +135,9 @@ class ConfirmCheck extends Component {
 									{this.menu}
 					    		</select>
 							</div>
-			    		<button className="search-btn" onClick={this.confirmCheck.bind(this)}>Confirmar Check-in</button>
+			    		<button className="search-btn" onClick={this.confirmCheck.bind(this)} disabled={this.state.disabledButton}>Confirmar Check-in</button>
 					</div>
+				</div>
 				</div>
 			</div>
 		)
@@ -209,7 +208,7 @@ class ConfirmCheck extends Component {
 
   		axios.get("http://localhost:3000/check?opc=4&typefood="+this.state.valueMenu+'&chair='+this.state.numberChair+'&code=002&identification='+identificationNumber+'&flight='+flightReser)
 			.then((response) => {
-				
+				this.setState({disabledButton: true})
 				if(response.status === 200){
 					alert("Usted ha realizado su check-in correctamente, recuerde presentarse en el aereopuerto 2 horas antes del viaje");
 					this.props.history.push({pathname: '/'});

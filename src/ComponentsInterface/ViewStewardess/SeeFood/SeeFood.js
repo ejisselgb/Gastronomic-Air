@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 
 import './SeeFood.css';
+import PassRegistry from '../PassRegistry/PassRegistry'
 
 /**
 
@@ -21,42 +21,48 @@ class SeeFood extends Component {
 
 		super(props);
 		this.state = {
-			food: {
-				name:"Erika Gutierrez",
-				booking:"ZRTHUP",
-				numberChair: "A5",
-				foodType: "Especial",
-				menu: "Paella",
-				status: "confirmado",
-			},
 			arrayFood: [],
-			nameFly: "A63"
+			disabledRegistry: false,
+			valueTest: false
 		};
 
 		this.goConfirmPurchase = this.goConfirmPurchase.bind(this);
+		this.receiveValueRefresh = this.receiveValueRefresh.bind(this);
 	}
 
 	/** @description	Component that render the elements after to load the page */
 	
 	componentDidMount(){
-		var arrayFill = []
 
-		if(this.state.food !== undefined){
-			arrayFill.push(this.state.food);
+		if(this.props.history.location.state.arrayReservation !== undefined){
+			this.setState({
+				arrayFood: this.props.history.location.state.arrayReservation
+			})
 		}
+	}
 
+	/**
+
+	 * This method is in charge of update the value that is show in the table when one user is confirm
+
+	 * @param  {value} corresponding to new value of arrayFood
+
+	*/
+
+	receiveValueRefresh(value){
 		this.setState({
-			arrayFood: arrayFill,
+			arrayFood: value,
+			disabledRegistry: false
 		})
 	}
 
+
 	render(){
 
-		if(this.state.arrayFood !== undefined){
 			this.food = this.state.arrayFood.map((image,index)=>{
-				console.log(image);
+				this.nameFly = image[0];
 
-				if(image.status != null ){
+				if(image[6] !== "Sin Confirmar"){
 					this.statusCon = "Pasajero confirmado";
 					var divStyle = {
 					    backgroundColor: "#84A8FB",
@@ -64,10 +70,10 @@ class SeeFood extends Component {
 	    				border: "#84A8FB"
 					};
 					this.confirmHere = "";
+
 				}else{
 					this.statusCon = "Sin confirmar "
 					this.confirmHere = "(Registrar Pasajero aqui)";
-
 				}
 
 				return(
@@ -75,22 +81,22 @@ class SeeFood extends Component {
 						<table className="table-fly">
 							<tbody>
 								<tr id="title-table">
+									<td>Número Reserva</td>
 									<td>Nombre Pasajero</td>
-									<td>Nro Reserva</td>
 									<td>Nro silla</td>
 									<td>Tipo Comida</td>
 									<td>Menu Seleccionado</td>
 									<td>Estado de confirmación</td>
 								</tr>
 								<tr>
-									<td>{image.name}</td>
-									<td>{image.booking}</td>
-									<td>{image.numberChair}</td>
-									<td>{image.foodType}</td>
-									<td>{image.menu}</td>
+									<td>{image[2]}</td>
+									<td>{image[1]}</td>
+									<td>{image[3]}</td>
+									<td>{image[4]}</td>
+									<td>{image[5]}</td>
 									<td style={divStyle} id="cell-prize">
 										{this.statusCon}
-										<Link to="/ViewStewardess">{this.confirmHere}</Link>
+										 <button className="registry" id="registry" onClick={this.goConfirmPurchase}>{this.confirmHere}</button>
 									</td>
 								</tr>
 							</tbody>
@@ -98,22 +104,32 @@ class SeeFood extends Component {
 					</div>
 				)
 			})
-		}
 
 		return(
 			<div className="container-fluid">
-				<h3 className="title-purchase">Menu de comidas para el vuelo {this.state.nameFly}</h3>
-				<div className="col-ms-10">
-					{this.food}
+				<div className="container-pass see-food">
+					<h3 className="title-purchase">Menu de comidas para el vuelo {this.nameFly}</h3>
+					<div className="col-ms-10">
+						{this.food}
+					</div>
+					<div>{ this.state.disabledRegistry ? <PassRegistry disabled={this.state.disabledRegistry} receiveValueRefresh={this.receiveValueRefresh.bind(this)} numberfligth={this.props.history.location.state.numberfligth}/> : null }</div>
 				</div>
-
 			</div>
 		)
 	}
 
+	/**
+
+	 * Close the modal when is update the passenger
+
+	 * @param  {e} value of identification of the modal
+
+	*/
 
 	goConfirmPurchase(e){
-		//this.props.history.push("/ConfirmPurchase");
+		if(e.target.id === "registry"){
+			this.setState( {disabledRegistry: true} )			
+		}
 	}
 
 }

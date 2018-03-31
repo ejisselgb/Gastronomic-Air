@@ -28,24 +28,33 @@ class ViewCheck extends Component {
 	render(){
 		return(
 			<div className="container-fluid">
-				<h3 className="title-home-app">Comienza tu check-in</h3>
-				<div className="col-sm-8">
-					<div className="container-form form-check">
-						<div className="container-title title-check">
-							<div className="title-origen">Código de Vuelo</div>
-							<div className="title-doc">Nro Documento</div>
+				<div className="container-pass view-check">
+					<h3 className="title-home-app">Comienza tu check-in</h3>
+					<div className="col-sm-8">
+						<div className="container-form form-check">
+							<div className="container-title title-check">
+								<div className="title-origen">Código de Vuelo</div>
+								<div className="title-doc">Nro Documento</div>
+							</div>
+							<div className="container-input">
+								<input className="input-text text-check" name="code" type="text" placeholder="ej: AGK009" onChange={this.onValueChanged}/>
+								<input className="input-text text-check" name="number" type="text" onChange={this.onValueChanged}/>
+							</div>
+							<button className="search-btn" onClick={this.goViewToClick.bind(this)}>Comenzar</button>
 						</div>
-						<div className="container-input">
-							<input className="input-text text-check" name="code" type="text" placeholder="ej: AGK009" onChange={this.onValueChanged}/>
-							<input className="input-text text-check" name="number" type="text" onChange={this.onValueChanged}/>
-						</div>
-						<button className="search-btn" onClick={this.goViewToClick.bind(this)}>Comenzar</button>
 					</div>
 				</div>
 			</div>
 		)
 	}
 
+	/**
+
+	 * This method capture the information enter through the inputs
+
+	 * @param  {e} capture the values of inputs fligth's number and identification user
+
+	*/
 
 	onValueChanged(e) {
 

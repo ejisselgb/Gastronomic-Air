@@ -30,6 +30,7 @@
 .form-purchase{
 	height: 400px;
 	float: none;
+	margin-left: 10px;
 }
 
 .title-two-form-pur{
@@ -38,8 +39,4 @@
 
 .title-two-doc{
 	margin-left: 112px;
-}
-
-.form-purchase{
-	margin-left: 28%;
 }

@@ -31,39 +31,41 @@ class ViewPassenger extends Component {
 	render(){
 		return(
 			<div className="container-fluid">
-				<h3 className="title-home-app">Encuentra tu vuelo, reserva, compra y haz check-in</h3>
-				<div className="row container-buttons-home">
-					<div className="col-sm-8">
-						<div className="container-form">
-							<div className="container-title">
-								<div className="title-origen">Origen</div>
-								<div className="title-destiny">Destino</div>
-							</div>
-							<div className="container-input">
-								<input className="input-text" name="origin" type="text" placeholder="ej: Cali" onChange={this.onValueChanged} />
-		              			<input className="input-text" name="destiny" type="text" placeholder="ej: Bogota" onChange={this.onValueChanged} />
-							</div>
-							<div className="date-form">
-								<div className="title-fly-date"><p>Fechas de Viaje</p></div>
-								<div className="title-form-date">
-									<div className="title-form-date">Partida</div>
-			              			<div className="title-form-date return">Regreso</div>
+				<div className="container-pass">
+					<h3 className="title-home-app">Encuentra tu vuelo, reserva, compra y haz check-in</h3>
+					<div className="row container-buttons-home">
+						<div className="col-sm-8">
+							<div className="container-form">
+								<div className="container-title">
+									<div className="title-origen">Origen</div>
+									<div className="title-destiny">Destino</div>
 								</div>
-			              		<div className="container-input-date">
-			              			<input className="input-date" type="date" name="goDate" min="2018-03-27"
-	                                  max="2018-12-31" onChange={this.onValueChanged} />
-	                           	
-				              		<input className="input-date" type="date" name="returnDate" min="2018-03-27"
+								<div className="container-input">
+									<input className="input-text" name="origin" type="text" placeholder="ej: Cali" onChange={this.onValueChanged} />
+			              			<input className="input-text" name="destiny" type="text" placeholder="ej: Bogota" onChange={this.onValueChanged} />
+								</div>
+								<div className="date-form">
+									<div className="title-fly-date"><p>Fechas de Viaje</p></div>
+									<div className="title-form-date">
+										<div className="title-form-date">Partida</div>
+				              			<div className="title-form-date return">Regreso</div>
+									</div>
+				              		<div className="container-input-date">
+				              			<input className="input-date" type="date" name="goDate" min="2018-03-27"
 		                                  max="2018-12-31" onChange={this.onValueChanged} />
-			              		</div>
-							</div>
-							<button className="search-btn" id="search" onClick={this.getValueOnClick.bind(this)}>Buscar vuelos</button>
-	              		</div>
+		                           	
+					              		<input className="input-date" type="date" name="returnDate" min="2018-03-27"
+			                                  max="2018-12-31" onChange={this.onValueChanged} />
+				              		</div>
+								</div>
+								<button className="search-btn" id="search" onClick={this.getValueOnClick.bind(this)}>Buscar vuelos</button>
+		              		</div>
+						</div>
+						<div className="container-check col-sm-4">
+							<p>¿Necesitar hacer check-in?, hazlo aquí</p>
+							<button className="search-btn" id="check" onClick={this.getValueOnClick.bind(this)}>Hacer check-in</button>
+						</div>
 					</div>
-				<div className="container-check col-sm-4">
-					<p>¿Necesitar hacer check-in?, hazlo aquí</p>
-					<button className="search-btn" id="check" onClick={this.getValueOnClick.bind(this)}>Hacer check-in</button>
-				</div>
 				</div>
 			</div>
 		);
