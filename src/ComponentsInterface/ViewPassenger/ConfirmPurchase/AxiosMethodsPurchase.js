@@ -10,12 +10,12 @@
 	* This data containt information of user passenger and is used for the function insertUser and sendEmail
 */
 
-export const consultUser = (axios, valueDocument, typeUser, valueName, valueEmail, history, valueFligth)=>{
+export const consultUser = (axios, valueDocument, typeUser, valueName, valueEmail, history, valueFligth, valueStreet)=>{
 
 	axios.get("http://localhost:3000/search?opc=2&identification="+valueDocument)
   	.then((response) => {
   		if(response.data.length === 0){
-  			insertUser(axios, valueDocument, typeUser, valueName, valueEmail, valueFligth, history);
+  			insertUser(axios, valueDocument, typeUser, valueName, valueEmail, valueFligth, history, valueStreet);
 		}else{
 		  	insertReservation(axios, valueDocument, valueFligth, valueEmail, history)				
 		}
@@ -32,15 +32,16 @@ export const consultUser = (axios, valueDocument, typeUser, valueName, valueEmai
 	* @param  {valueDocument, typeUser, valueName, valueEmail}  This data containt information of user passenger
 */
 
-function insertUser(axios, valueDocument, typeUser, valueName, valueEmail, valueFligth, history){
+function insertUser(axios, valueDocument, typeUser, valueName, valueEmail, valueFligth, history, valueStreet){
 		
-	axios.get("http://localhost:3000/search?opc=3&identification="+valueDocument+"&type="+typeUser+"&name="+valueName+"&email="+valueEmail)
+	axios.get("http://localhost:3000/search?opc=3&identification="+valueDocument+"&type="+typeUser+"&name="+valueName+"&email="+valueEmail+"&address="+valueStreet)
 	.then((response) => {
 		if(response.status === 200){
 			insertReservation(axios, valueDocument, valueFligth, valueEmail, history)
 		}
 	}).catch(function (err) {
 		alert("Verfique sus datos, no es posible continuar");
+		window.location.reload();
 	});
 }
 

@@ -100,8 +100,6 @@ class ViewCheck extends Component {
 			alert("Debe ingresar código del vuelo y número de documento para continuar")
 		}
 	}
-
 }
-
 
 export default ViewCheck;

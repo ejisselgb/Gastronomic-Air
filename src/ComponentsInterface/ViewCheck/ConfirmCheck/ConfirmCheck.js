@@ -206,7 +206,7 @@ class ConfirmCheck extends Component {
   		var identificationNumber = this.props.history.location.state.documentNumber;
   		var flightReser = this.props.history.location.state.codeR;
 
-  		axios.get("http://localhost:3000/check?opc=4&typefood="+this.state.valueMenu+'&chair='+this.state.numberChair+'&code=002&identification='+identificationNumber+'&flight='+flightReser)
+  		axios.get("http://localhost:3000/check?opc=4&typefood="+this.state.valueMenu+'&chair='+this.state.numberChair+'&identification='+identificationNumber+'&flight='+flightReser)
 			.then((response) => {
 				this.setState({disabledButton: true})
 				if(response.status === 200){

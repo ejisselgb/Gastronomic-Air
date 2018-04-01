@@ -1,0 +1,12 @@
+#cell-load{
+	display: grid !important;
+}
+
+.btn-load{
+    background-color: #0050D0;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-left: 80px;
+    width: 120px;
+}

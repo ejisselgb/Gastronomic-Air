@@ -13,3 +13,13 @@
 #title-table td{
 	width: 300px;
 }
+
+.btn-close-food{
+
+    background-color: #0050D0;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    color: white;
+    float: right;
+}

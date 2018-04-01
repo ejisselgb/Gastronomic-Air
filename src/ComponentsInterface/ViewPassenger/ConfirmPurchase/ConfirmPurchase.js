@@ -48,14 +48,11 @@ class ConfirmPurchase extends Component {
 					</div>
 
 					<div className="container-title">
-						<div className="title-origen">Tipo de documento</div>
+						<div className="title-origen">Dirección residencia</div>
 						<div className="title-two-doc">Nro documento</div>
 					</div>
 					<div className="container-input">
-					<select className="input-text input-select" defaultValue="" onChange={this.handleChange}>
-			            <option value="document">Cedula</option>
-			            <option value="passport">Pasaporte</option>
-			        </select>
+						<input className="input-text" name="street" type="text" onChange={this.handleChange}/>
 						<input className="input-text" name="identification" type="text" onChange={this.handleChange}/>
 					</div>
 
@@ -104,9 +101,9 @@ class ConfirmPurchase extends Component {
 			this.setState({
 				valueDocument: e.target.value
 			})
-		}else if(e.target.name === "numberT"){
+		}else if(e.target.name === "street"){
 			this.setState({
-				valueCard: e.target.value
+				valueStreet: e.target.value
 			})
 		}
   	}
@@ -124,10 +121,10 @@ class ConfirmPurchase extends Component {
   		var typeUser = 3;
   		var valueFligth = this.props.history.location.state.valueFly;
 
-  		if(this.state.valueName !== undefined && this.state.valueEmail !== undefined && this.state.valueDocument !== undefined && this.state.valueCard !== undefined){
+  		if(this.state.valueName !== undefined && this.state.valueEmail !== undefined && this.state.valueDocument !== undefined && this.state.valueStreet !== undefined){
 
   			/*Function called from class js AxiosMethodsPurchase*/
-  			consultUser(axios, this.state.valueDocument, typeUser, this.state.valueName, this.state.valueEmail, this.props.history, valueFligth);
+  			consultUser(axios, this.state.valueDocument, typeUser, this.state.valueName, this.state.valueEmail, this.props.history, valueFligth, this.state.valueStreet);
   			this.setState({disabledButton: true})
 
   		}else{
