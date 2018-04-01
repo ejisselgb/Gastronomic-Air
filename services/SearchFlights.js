@@ -17,7 +17,8 @@ function getFligths(request, response) {
 		       	'PRECIO, ' +
 		       	'CODVUELO ' +
 		  		'FROM AEROLINEA INNER JOIN VUELO ON (NITAERO = AEROLINEA_NITAERO) ' +
-		 		'WHERE CIUD_ORIGEN = :origin AND CIUD_DESTINO = :destiny';
+		 		'WHERE CIUD_ORIGEN = :origin AND CIUD_DESTINO = :destiny ' +
+		 		'AND  ESTADO_VUELO= 1';
 
 		    var origin = request.query.origin;
 			var destiny = request.query.destiny;
@@ -42,11 +43,12 @@ function getFligths(request, response) {
  			var type = request.query.type;
    			var name = request.query.name;
    			var email = request.query.email;
+   			var address = request.query.address;
 
-   			var slqUsers = 'INSERT INTO USUARIO (CODUSUARIO,TIPOUSUARIO,NOMBRE,CORREO) ' +
- 							'VALUES (:identification,:type,:name,:email) ';
+   			var slqUsers = 'INSERT INTO USUARIO (CODUSUARIO,TIPOUSUARIO,NOMBRE,CORREO, DIRECCION) ' +
+ 							'VALUES (:identification,:type,:name,:email,:address) ';
 
- 			connectionDB.open(slqUsers,[identification, type, name, email],true,response);
+ 			connectionDB.open(slqUsers,[identification, type, name, email, address],true,response);
 
  			break;
 

@@ -39,7 +39,7 @@ function doCheckIn(request, response) {
 
 			var typefood = request.query.typefood;
 
-			var sqlmenu = 'SELECT CODTIPCOMIDA, DESCRIPCIONCOMI, DESCRIPCION ' + 
+			var sqlmenu = 'SELECT CODTIPCOMIDA, DESCRIPCIONCOMI,CODCOMIDA, DESCRIPCION  ' + 
 					'FROM TIPOCOMIDA ' +
 			        'INNER JOIN ' +
 			        'COMIDAS ' +
@@ -58,14 +58,13 @@ function doCheckIn(request, response) {
 			var code = request.query.code;
 			var chair = request.query.chair;
 
-			var sqlUpdate = 'UPDATE RESERVAS ' +
+			var sqlUpdate =	'UPDATE RESERVAS ' +
 							'SET CODCOMIDAR= :typefood, ' +
-							'NUMSILLA= :chair, ' +
-							'CODESTRESERVA= :code ' +
+							'NUMSILLA= :chair ' +
 							'WHERE CODUSUARIO= :identification ' +
 							'AND  VUELOUSUARIO= :flight';
 
-			connectionDB.open(sqlUpdate,[typefood, chair, code, identification, flight],true,response);
+			connectionDB.open(sqlUpdate,[typefood, chair, identification, flight],true,response);
 
 		default:
 	}
