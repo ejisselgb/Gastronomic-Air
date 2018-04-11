@@ -10,6 +10,10 @@ var connectionDB = require("./connectionDB");
 var sendEmail = require("./services/SendEmail");
 var SearchFli = require("./services/SearchFlights");
 var checkin = require("./services/CheckIn");
+var reservation = require("./services/ConfirmReservation");
+var reports = require("./services/GenerateReports");
+var inquiry = require("./services/inquiry");
+
 
 	
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,6 +35,9 @@ router.get('/', function(request, response){
 router.get('/send/:email/:path/:subject', sendEmail.getSendEmail);
 router.get('/search', SearchFli.getFligths);
 router.get('/check', checkin.doCheckIn);
+router.get('/reservation', reservation.doReservation);
+router.get('/reports', reports.generateReport);
+router.get('/inquiry', inquiry.generateInquiry);
 
 
 

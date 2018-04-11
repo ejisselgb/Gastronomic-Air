@@ -105,7 +105,37 @@ function doReservation(request, response) {
 
       break;
 
+    case 6:
+
+      var inquiry = request.query.inquiry;
+
+      var sql = 'SELECT NOMBRE, ' +
+        'CORREO, ' +
+        'DESCESTADO, ' +
+        'CARGACOMIDA, ' +
+        'VUELOUSUARIO, FEC_PARTIDA ' +
+        'FROM USUARIO ' +
+        'INNER JOIN RESERVAS ' +
+        'ON (USUARIO.CODUSUARIO = RESERVAS.CODUSUARIO) ' +
+        'INNER JOIN VUELOUSUARIO ' +
+        'ON (USUARIO.CODUSUARIO = VUELOUSUARIO.CODUSUARIO) ' +
+        'INNER JOIN VUELO ' +
+        'ON (CODVUELO = VUELO_CODVUELO) ' +
+        'INNER JOIN ESTADORESERVA   ' +
+        'ON (CODESTADO = CODESTRESERVA) ' +
+        'WHERE TIPOUSUARIO = 3 ' +
+        'AND  ESTADO_VUELO =2 ' +
+        'AND  CARGACOMIDA = ' + '\'S\' ' +
+        'AND  CODESTRESERVA = ' + '\'002\' ' +
+        'AND  VUELOUSUARIO=:numVuelo ';
+
+      connectionDB.open(sql,[inquiry],false,response);
+
+      break;
+
     default:
+
+    break;
   }
 
 }
