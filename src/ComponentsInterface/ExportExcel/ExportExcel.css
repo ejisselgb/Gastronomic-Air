@@ -1,0 +1,35 @@
+.btn-export{
+	background-color: #0050D0;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    font-family: sans-serif;
+    color: white;
+    font-size: 16px;
+    margin-left: 210px;
+}
+
+.btn-export-book1{
+	margin-top: -18px;
+}
+
+.text-center span{
+	color: transparent;
+}
+
+.container-book
+{
+	margin-top: -24px;
+}
+
+.btn-export-book4{
+	margin-top: -114px;
+}
+
+.btn-export-book2{
+	margin-top: -65px;
+}
+
+.btn-export-book5{
+	margin-top: -162px;
+}

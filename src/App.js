@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch } from 'react-router';
 import { BrowserRouter, Route } from 'react-router-dom';
-//import axios from "axios";
 
 
 import './App.css';
@@ -14,6 +13,9 @@ import Purchase from './ComponentsInterface/ViewPassenger/Purchase/Purchase';
 import ConfirmPurchase from './ComponentsInterface/ViewPassenger/ConfirmPurchase/ConfirmPurchase';
 import ConfirmCheck from './ComponentsInterface/ViewCheck/ConfirmCheck/ConfirmCheck';
 import SeeFood from './ComponentsInterface/ViewStewardess/SeeFood/SeeFood';
+import ViewReports from './ComponentsInterface/ViewReports/ViewReports';
+import ViewLoadFood from './ComponentsInterface/ViewLoadFood/ViewLoadFood';
+import Inquiry from './ComponentsInterface/Inquiry/Inquiry';
 
 class App extends Component {
   render() {
@@ -45,6 +47,15 @@ class App extends Component {
                   }></Route>
               <Route path="/SeeFood" render={
                     ({history}) => <SeeFood history={history}/>
+                  }></Route>
+              <Route path="/ViewReports" render={
+                    ({history}) => <ViewReports history={history}/>
+                  }></Route>
+              <Route path="/ViewLoadFood" render={
+                    ({history}) => <ViewLoadFood history={history}/>
+                  }></Route>
+              <Route path="/Inquiry" render={
+                    ({history}) => <Inquiry history={history}/>
                   }></Route>
           </Switch>
         </BrowserRouter>

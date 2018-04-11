@@ -19,6 +19,7 @@ class ViewModal extends Component {
    		this.onValueChanged = this.onValueChanged.bind(this);
    		this.refreshView = this.refreshView.bind(this);
    		this.consultFligth = this.consultFligth.bind(this);
+   		this.sendEmail = this.sendEmail.bind(this);
 	}
 
 	/** 
@@ -122,6 +123,15 @@ class ViewModal extends Component {
 				valueFligthReportname: e.target.name,
 				valueOption: 4
 			})
+
+		}else if(e.target.name === "inquiry"){
+
+			this.setState({
+				valueFligthReport: e.target.value,
+				valueFligthReportname: e.target.name,
+				valueOption: 6
+			})
+
 		}
 	}
 
@@ -175,8 +185,8 @@ class ViewModal extends Component {
 			axios.get("http://localhost:3000/reservation?opc="+valueOption+"&"+typeData+"="+valueFligth)
 			.then((response) => {
 
-				console.log(response.data);
-				if(typeData === "numberfligth"){
+				if(response.status === 200){
+					if(typeData === "numberfligth"){
 					this.props.history.push({
 				    	pathname: '/SeeFood',
 				    	state: {
@@ -184,27 +194,32 @@ class ViewModal extends Component {
 				        	numberfligth: this.state.numberfligth
 				    	}
 					})
+					}
+					else if(typeData === "numberres"){
+						alert("Usuario confirmado correctamente");
+						if(this.props.numberfligth !== undefined){
+							this.refreshView(this.props.numberfligth);
+						}	
+					}
+					
+					else if(typeData === "loadFood"){
+						this.props.history.push({
+					       	pathname: '/ViewLoadFood',
+					        state: {
+					            foodToLoad: response.data,
+					            datafligth: valueFligth
+					        }
+					    })
+
+					}else if(typeData === "inquiry"){
+						this.sendEmail(response.data, valueFligth);
+					}
+
 				}
 
-				else if(typeData === "numberres"){
-					alert("Usuario confirmado correctamente");
-					if(this.props.numberfligth !== undefined){
-						this.refreshView(this.props.numberfligth);
-					}	
-				}
-				
-				else if(typeData === "loadFood"){
-					this.props.history.push({
-				       	pathname: '/ViewLoadFood',
-				        state: {
-				            foodToLoad: response.data,
-				            datafligth: valueFligth
-				        }
-				    })
-				}
-
-				}).catch(function (err) {
-	        	alert("Se presento un problema, verifique los datos ingresados e intente de nuevo");
+			}).catch(function (err) {
+	        	//alert("Se presento un problema, verifique los datos ingresados e intente de nuevo");
+	        	console.log(err);
 	    	});
 		}
 	}
@@ -226,6 +241,36 @@ class ViewModal extends Component {
 				}).catch(function (err) {
 	        	console.log(err);
 	    	});
+	}
+
+
+	/**
+
+	 * Send email
+
+	 * @param  {emails, valueFligth} array of emails user and number fligth
+
+	*/
+
+	sendEmail(emails, valueFligth){
+
+		var countEmails = emails.length;
+
+		emails.map((image,index)=>{
+			axios.get("http://localhost:3000/send/"+image[1]+"/Template1/Gracias por comprar en Gastronomic Air")
+			.then((response) => {
+				countEmails = countEmails - 1;
+				if(response.status === 200 && countEmails === 0){
+					alert("La encuesta ha sido enviada a los usuarios del vuelo " + valueFligth);
+					window.location.reload();
+				}
+				
+			}).catch(function (err) {
+		        console.log(err);
+		    });
+
+		    return(<div></div>)
+		})
 	}
 
 }

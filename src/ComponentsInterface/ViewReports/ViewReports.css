@@ -5,7 +5,7 @@
 }
 
 .title-report{
-	margin-top: 50px;
+	margin-top: 30px;
     margin-bottom: 20px;
 }
 
@@ -16,4 +16,19 @@
 .title-main-report{
 	margin-top: 10px;	
 }
-    
+
+.text-reports{
+	height: 35px;
+}
+
+.title-report-two{
+	margin-left: 160px;
+}
+
+.container-report{
+	margin-top: 0px;
+}
+
+.btn-reports{
+	margin-top: 30px;
+}
