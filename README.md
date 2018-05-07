@@ -30,7 +30,7 @@ impdp system/oracle schemas=GASTRO
 DUMPFILE=DATA_PUMP_DIR:GASTRO_11042018.dmp 
 LOGFILE=DATA_PUMP_DIR:GASTRO_11042018.log;
 
-(Estos archivos estan contenidos en la rama DataBase)
+(Estos archivos estan contenidos en la rama DataBase, guardar los archivos en la ruta C:\oraclexe\app\oracle\admin\XE\dpdump)
 
 
 Con esto ya tendrá su base de datos instalada...
