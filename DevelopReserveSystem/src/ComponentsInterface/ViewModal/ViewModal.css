@@ -1,0 +1,45 @@
+.btn-close{
+	background-color: transparent;
+    border: none;
+    font-size: 15px;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.container-modal{
+	width: 250px;
+    margin-left: 30%;
+    margin-top: 40px;
+}
+
+.container-modal p{
+
+	text-align: center;
+    width: 200px;
+}
+
+.container-modal input{
+	border-color: #0050D0;
+    border: 1px solid;
+}
+
+.container-modal button{
+	margin-top: 20px;
+    background-color: #0050D0;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    color: white;
+    margin-left: 30px;
+}
+
+.ReactModal__Content{
+	width: 600px !important;
+	left: 28% !important; 
+    height: 350px !important;
+}
+
+.ReactModal__Overlay{
+    background-color: rgba(0, 0, 0, 0.75) !important;
+}   

@@ -1,0 +1,19 @@
+.container-row-buttons{
+	display: flex;
+    width: 90%;
+}
+
+.vie-ste{
+	width: 80%;
+	margin-left: 10%;
+    height: 450px;
+}
+
+.button-menu{
+	margin-left: 80px;
+}
+
+.button-pass{
+	margin-top: 80px;
+	margin-left: -120px;
+}

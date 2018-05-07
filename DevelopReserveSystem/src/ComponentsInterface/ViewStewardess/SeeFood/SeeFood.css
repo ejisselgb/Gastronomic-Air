@@ -1,0 +1,25 @@
+.registry{
+	background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.see-food{
+	overflow-y: scroll;
+    height: 600px;
+}
+
+#title-table td{
+	width: 300px;
+}
+
+.btn-close-food{
+
+    background-color: #0050D0;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    color: white;
+    float: right;
+}

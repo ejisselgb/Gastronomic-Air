@@ -1,0 +1,38 @@
+;;; 
+Import: Release 11.2.0.2.0 - Production on Jue Abr 12 10:18:47 2018
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+;;; 
+Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+Master table "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully loaded/unloaded
+Starting "SYSTEM"."SYS_IMPORT_SCHEMA_01":  system/******** schemas=GASTRO DUMPFILE=DATA_PUMP_DIR:GASTRO_11042018.dmp LOGFILE=DATA_PUMP_DIR:GASTRO_11042018.log; 
+Processing object type SCHEMA_EXPORT/USER
+Processing object type SCHEMA_EXPORT/SYSTEM_GRANT
+Processing object type SCHEMA_EXPORT/ROLE_GRANT
+Processing object type SCHEMA_EXPORT/DEFAULT_ROLE
+Processing object type SCHEMA_EXPORT/TABLESPACE_QUOTA
+Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
+Processing object type SCHEMA_EXPORT/SEQUENCE/SEQUENCE
+Processing object type SCHEMA_EXPORT/TABLE/TABLE
+Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
+. . imported "GASTRO"."AEROLINEA"                        5.460 KB       2 rows
+. . imported "GASTRO"."COMIDAS"                          7.437 KB      15 rows
+. . imported "GASTRO"."ENCUEPREGU"                       6.546 KB      25 rows
+. . imported "GASTRO"."ENCUESTA"                         5.484 KB       6 rows
+. . imported "GASTRO"."ESTADORESERVA"                    5.476 KB       2 rows
+. . imported "GASTRO"."ESTADOVUELO"                      5.453 KB       2 rows
+. . imported "GASTRO"."PREGUNTAS"                        5.609 KB       4 rows
+. . imported "GASTRO"."PROVEEDORCOMIDAS"                 6.867 KB       4 rows
+. . imported "GASTRO"."RESERVAS"                         7.765 KB      11 rows
+. . imported "GASTRO"."TIPOCOMIDA"                       6.023 KB       7 rows
+. . imported "GASTRO"."TIPOUSUARIO"                      5.476 KB       3 rows
+. . imported "GASTRO"."USUARIO"                          8.359 KB      17 rows
+. . imported "GASTRO"."VUELO"                            8.484 KB       3 rows
+. . imported "GASTRO"."VUELOUSUARIO"                     6.359 KB       6 rows
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/INDEX
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+Processing object type SCHEMA_EXPORT/TABLE/TRIGGER
+Processing object type SCHEMA_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
+Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at 10:19:12

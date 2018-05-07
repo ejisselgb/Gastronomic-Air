@@ -1,0 +1,38 @@
+.title-purchase{
+	margin-top: 50px;
+}
+
+.table-fly #title-table{
+	border: 1px solid #84A8FB;
+    text-align: center;
+    padding: 8px;
+    background-color: #84A8FB;
+    font-weight: 600;
+}
+
+.container-table-fly{
+	margin-top: 50px;
+    margin-left: 5%;
+}
+
+.table-fly{
+	width: 90%
+}
+
+#cell-prize{
+	background-color: #FFF157;
+	border: 1px solid #FFF157;
+}
+
+.button-purchase{
+	background-color: #0050D0;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 200;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
