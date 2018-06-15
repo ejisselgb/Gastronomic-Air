@@ -36,7 +36,7 @@ function doReservation(request, response) {
         'INNER JOIN VUELO ' +
         'ON (CODESTVUELO = ESTADO_VUELO) ' +
         'WHERE VUELOUSUARIO = CODVUELO ' +
-        'AND VUELOUSUARIO=:numberfligth';      
+        'AND CODVUELOS=:numberfligth';      
 
       connectionDB.open(sql,[numberfligth],false,response);
 

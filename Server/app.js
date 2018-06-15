@@ -15,7 +15,7 @@ var reports = require("./services/GenerateReports");
 var inquiry = require("./services/inquiry");
 
 
-	
+  
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
@@ -25,11 +25,11 @@ var router = express.Router();
 app.use(router);
 
 app.listen(3000, function() {
-	console.log("Servidor web - localhost:3000");
+  console.log("Servidor web - localhost:3000");
 });
 
 router.get('/', function(request, response){
-	response.send("Servicios de Gastronomic Air");
+  response.send("Servicios de Gastronomic Air");
 });
 
 router.get('/send/:email/:path/:subject', sendEmail.getSendEmail);
@@ -38,11 +38,3 @@ router.get('/check', checkin.doCheckIn);
 router.get('/reservation', reservation.doReservation);
 router.get('/reports', reports.generateReport);
 router.get('/inquiry', inquiry.generateInquiry);
-
-
-
-
-
-
-
-

@@ -121,6 +121,8 @@ class ConfirmPurchase extends Component {
   		var typeUser = 3;
   		var valueFligth = this.props.history.location.state.valueFly;
 
+  		console.log(valueFligth);
+
   		if(this.state.valueName !== undefined && this.state.valueEmail !== undefined && this.state.valueDocument !== undefined && this.state.valueStreet !== undefined){
 
   			/*Function called from class js AxiosMethodsPurchase*/

@@ -20,7 +20,7 @@ function doCheckIn(request, response) {
 				'FROM RESERVAS R, USUARIO U ' + 
 				'WHERE R.CODUSUARIO = U.CODUSUARIO ' + 
 				'AND R.CODUSUARIO = :identification ' +
-				'AND R.VUELOUSUARIO = :numbereservation ' +
+				'AND R.CODVUELOS = :numbereservation ' +
 				'AND ROWNUM >= 1';
 
 			connectionDB.open(sql,[identification, numbereservation],false,response);
@@ -62,7 +62,7 @@ function doCheckIn(request, response) {
 							'SET CODCOMIDAR= :typefood, ' +
 							'NUMSILLA= :chair ' +
 							'WHERE CODUSUARIO= :identification ' +
-							'AND  VUELOUSUARIO= :flight';
+							'AND  CODVUELOS= :flight';
 
 			connectionDB.open(sqlUpdate,[typefood, chair, identification, flight],true,response);
 

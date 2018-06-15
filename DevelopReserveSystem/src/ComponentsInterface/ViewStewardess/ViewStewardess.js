@@ -53,7 +53,7 @@ class ViewStewardess extends Component {
 			messageInfoPro: 'Ingresa los datos del vuelo para continuar',
 
 			messageModalPoll: 'Conozca que piensan los usuarios de las comidas especiales',
-			valueNameInputPoll: 'inquiry',
+			valueNameInputPoll: 'numberTest',
 			valueBtnPoll: 'Enviar Encuesta',
 
 			messageModalLoad: 'Cargue la comida especial a llevar en este vuelo',

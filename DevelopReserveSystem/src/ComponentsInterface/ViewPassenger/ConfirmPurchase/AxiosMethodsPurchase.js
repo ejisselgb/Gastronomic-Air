@@ -12,7 +12,7 @@
 
 export const consultUser = (axios, valueDocument, typeUser, valueName, valueEmail, history, valueFligth, valueStreet)=>{
 
-	axios.get("http://localhost:3000/search?opc=2&identification="+valueDocument)
+	axios.get("http://172.17.2.226:3000/search?opc=2&identification="+valueDocument)
   	.then((response) => {
   		if(response.data.length === 0){
   			insertUser(axios, valueDocument, typeUser, valueName, valueEmail, valueFligth, history, valueStreet);
@@ -34,7 +34,7 @@ export const consultUser = (axios, valueDocument, typeUser, valueName, valueEmai
 
 function insertUser(axios, valueDocument, typeUser, valueName, valueEmail, valueFligth, history, valueStreet){
 		
-	axios.get("http://localhost:3000/search?opc=3&identification="+valueDocument+"&type="+typeUser+"&name="+valueName+"&email="+valueEmail+"&address="+valueStreet)
+	axios.get("http://172.17.2.226:3000/search?opc=3&identification="+valueDocument+"&type="+typeUser+"&name="+valueName+"&email="+valueEmail+"&address="+valueStreet)
 	.then((response) => {
 		if(response.status === 200){
 			insertReservation(axios, valueDocument, valueFligth, valueEmail, history)
@@ -58,7 +58,7 @@ function insertReservation(axios, valueDocument, valueFligth, valueEmail, histor
 	var valueStatus = '001';
 	var email = valueEmail;
 
-	axios.get("http://localhost:3000/search?opc=4&identification="+valueDocument+"&fligthCode="+valueFligth+"&status="+valueStatus)
+	axios.get("http://172.17.2.226:3000/search?opc=4&identification="+valueDocument+"&fligthCode="+valueFligth+"&status="+valueStatus)
 	.then((response) => {
 		if(response.status === 200){
 			sendEmail(axios, email, history, valueFligth);
@@ -78,7 +78,7 @@ function insertReservation(axios, valueDocument, valueFligth, valueEmail, histor
 
 function sendEmail(axios, email, history, valueFligth){
 
-	axios.get("http://localhost:3000/send/"+email+"/Template2/Gracias por comprar en Gastronomic Air")
+	axios.get("http://172.17.2.226:3000/send/"+email+"/Template2/Gracias por comprar en Gastronomic Air")
 		.then((response) => {
 			if(response.status === 200){
 				alert("Ud ha comprado correctamente su ticket, vuelo número: "+valueFligth+ " Se ha enviado a su correo la información del vuelo");

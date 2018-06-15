@@ -104,6 +104,8 @@ class ViewModal extends Component {
 
 	searchFly(){
 
+		console.log(this.state.numberfligth);
+
 		if(this.state.numberfligth !== undefined){
 			axios.get("http://localhost:3000/reservation?opc=1&numberfligth="+this.state.numberfligth)
 			.then((response) => {

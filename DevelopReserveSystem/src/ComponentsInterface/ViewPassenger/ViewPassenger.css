@@ -12,7 +12,6 @@
 
 .container-title{
 	display: flex;
-	margin-top: 30px;
 }
 
 .title-form{
@@ -21,10 +20,6 @@
 }
 
 .title-destiny{
-	margin-left: 200px;
-}
-
-.title-origen{
 	margin-left: 50px;
 }
 
@@ -40,7 +35,7 @@
 
 .container-form{
 	width: 600px;
-    height: 350px;
+    height: auto;
     padding: 20px;
     background-color: #84A8FB;
     margin-right: 150px;
@@ -56,6 +51,7 @@
 	width: 200px;
 	border: none;
 	height: 35px;
+	text-align: left;
 
 }
 
@@ -65,7 +61,7 @@
 
 .title-form-date{
 	margin-left: 25px;
-    width: 100px;
+    width: auto;
 }
 
 .return{
@@ -73,12 +69,13 @@
 }
 
 .search-btn{
-	margin-top: 40px;
+	margin-top: 25px;
 	background-color: #0050D0;
     border: none;
     cursor: pointer;
     height: 40px;
     color: white;
+    border-radius: 5px;
 }
 
 .container-check{
@@ -95,4 +92,21 @@
 
 .container-check p{
 	font-weight: 700;
+}
+
+.Select-control{
+	width: 200px;
+	margin-left: 50px;
+    border: none;
+    height: 35px;
+}
+
+.title-origen{
+	width: 200px;
+    text-align: left;
+    margin-left: 50px;
+}
+
+.label-doc{
+	margin-left: 180px;
 }

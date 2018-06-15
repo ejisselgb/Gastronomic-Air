@@ -86,7 +86,7 @@ class PassRegistry extends Component {
 	registryPass(){
 
 		if(this.state.valueReservation !== undefined){
-			axios.get("http://localhost:3000/reservation?opc=2&numberres="+this.state.valueReservation)
+			axios.get("http://172.17.2.226:3000/reservation?opc=2&numberres="+this.state.valueReservation)
 			.then((response) => {
 				this.setState({disabledButton: true})
 				if(response.status === 200){
@@ -106,7 +106,7 @@ class PassRegistry extends Component {
 
 	refreshView(valueProps){
 
-		axios.get("http://localhost:3000/reservation?opc=1&numberfligth="+valueProps)
+		axios.get("http://172.17.2.226:3000/reservation?opc=1&numberfligth="+valueProps)
 			.then((response) => {
 				this.props.receiveValueRefresh(response.data);
 				}).catch(function (err) {

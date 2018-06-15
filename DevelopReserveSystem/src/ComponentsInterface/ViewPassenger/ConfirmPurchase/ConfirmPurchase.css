@@ -20,7 +20,7 @@
 }
 
 .title-two{
-	margin-left: 120px;
+	margin-left: 50px;
 }
 
 .input-select{
@@ -34,9 +34,13 @@
 }
 
 .title-two-form-pur{
-	margin-left: 165px;
+	margin-left: 50px;
 }
 
 .title-two-doc{
-	margin-left: 100px;
+	margin-left: 50px;
+}
+
+.form-purchase .container-title{
+	margin-top: 10px;
 }

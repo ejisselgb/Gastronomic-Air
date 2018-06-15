@@ -37,7 +37,7 @@ class ViewCheck extends Component {
 								<div className="title-doc">Nro Documento</div>
 							</div>
 							<div className="container-input">
-								<input className="input-text text-check" name="code" type="text" placeholder="ej: AGK009" onChange={this.onValueChanged}/>
+								<input className="input-text text-check" name="code" type="text" placeholder="ej: 830" onChange={this.onValueChanged}/>
 								<input className="input-text text-check" name="number" type="text" onChange={this.onValueChanged}/>
 							</div>
 							<button className="search-btn" onClick={this.goViewToClick.bind(this)}>Comenzar</button>
